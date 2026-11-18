@@ -30,18 +30,36 @@ The supplied notebook/script includes:
 
 ## Dataset
 
-The workflow expects `USGS\_BALT2\_csv.csv`. The dataset is **not included** in this repository. Obtain it from the workshop organizer. 
+## Dataset
 
-The notebook and script currently refer to:
+The workflow uses the USGS BALT2 monitoring dataset (`USGS_BALT2_csv.csv`).
+
+**The dataset is not included in this repository.** Participants must obtain the authorised dataset from the workshop organiser.
+
+### Uploading the dataset in Google Colab
+
+1. Open the Jupyter notebook in Google Colab.
+2. Run the first data-loading cell under **Upload and inspect the source data**.
+3. Click **Choose Files** when the upload prompt appears.
+4. Select `USGS_BALT2_csv.csv` from your computer.
+5. The notebook automatically captures the uploaded filename and loads the dataset.
+
+The notebook uses:
 
 ```python
-df1 = pd.read\_csv("/content/USGS\_BALT2\_csv.csv")
+from google.colab import files
+
+uploaded = files.upload()
+csv_path = next(iter(uploaded))
+
+raw = pd.read_csv(csv_path)
 ```
 
-For local execution, change this to the location of your authorized CSV, for example:
+**For local execution:** Replace the Google Colab upload lines with the path to your authorised local dataset:
 
 ```python
-df1 = pd.read\_csv("USGS\_BALT2\_csv.csv")
+csv_path = "USGS_BALT2_csv.csv"
+raw = pd.read_csv(csv_path)
 ```
 
 ## Installation
